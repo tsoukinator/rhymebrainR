@@ -26,8 +26,8 @@ my_desc$set(Title = "API Wrapper for Rhymebrain.com.")
 # The description of your package
 my_desc$set(Description = "API Wrapper to allow R to perform API calls to the rhymebrain.com API.")
 # The urls
-my_desc$set("URL", "http://this")
-my_desc$set("BugReports", "http://that")
+my_desc$set("URL", "https://github.com/tsoukinator/rhymebrainR")
+my_desc$set("BugReports", "https://github.com/tsoukinator/rhymebrainR/issues")
 # Save everyting
 my_desc$write(file = "DESCRIPTION")
 

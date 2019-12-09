@@ -1,0 +1,237 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+library(attempt)
+library("devtools")
+library("roxygen2")
+library("usethis")
+library("curl")
+library("httr")
+library("jsonlite")
+library("attempt")
+library("purrr")
+#library("r-lib/desc")
+library(dplyr)
+```
+
+```{r}
+rel_rhy = "forgetful"
+
+  args <- list(rel_rhy = rel_rhy, max = 1000)
+  # Check that at least one argument is not null
+  stop_if_all(args, is.null, "You need to specify at least one argument")
+  # Chek for internet
+  check_internet()
+  # Create the
+  res <- GET(rhyme_url, query = compact(args))
+  #query = fromJSON(res)
+  #print(query)
+  
+  test2 <- fromJSON(res$url)
+  
+  # Check the result
+  check_status(res)
+  # Get the content and return it as a data.frame
+  #fromJSON(res)
+
+test2
+```
+
+
+Can use this portion to assess "rhyme strength" of each song, using the word on each ending line
+Can also compare against previous lines to see which lines rhyme with one another, and in what format (i.e. ABAB, AABB, etc)
+
+# Set up Rhymebrain API
+https://rhymebrain.com/api.html
+```{r}
+
+word = "forgetful"
+maxResults = NULL
+
+  args <- list(`function` = "getRhymes", word = word, maxResults = maxResults)
+  # Check that at least one argument is not null
+  stop_if_all(args, is.null, "You need to specify at least one argument")
+  # Chek for internet
+  check_internet()
+  # Create the
+  res <- GET(rhyme_brain, query = compact(args))
+  #query = fromJSON(res)
+  #print(query)
+  
+  test2 <- fromJSON(res$url)
+  
+  # Check the result
+  check_status(res)
+  # Get the content and return it as a data.frame
+  #fromJSON(res)
+
+test2 <- filter(test2, flags != "")
+test2
+
+```
+
+```{r}
+rhyme_brain_get("terrible")
+```
+
+Import Lyrics of Song
+```{r}
+# Parameter artist name (use in wildcard import filter)
+# Song/album name (use in filter after artist import)
+
+library(data.table)
+library(readr)
+
+# Pre-load existing features data
+
+# Navigate up, then into
+setwd('..')
+getwd()
+setwd('..')
+getwd()
+
+lyric_files <- list.files(path = "Lyrical Genius/Lyric_Discography", recursive = TRUE, pattern = "*pearl jam*", full.names = TRUE)
+
+# Read all the files and create a FileName column to store filenames
+lyric_array <- rbindlist( sapply(lyric_files, fread, simplify = FALSE), use.names = TRUE, fill = TRUE)
+
+lyric_array <- filter(lyric_array, track_title == "I Am Mine")
+lyric_array
+
+```
+
+```{r}
+# Get last word of each line from lyric
+loc <- regexpr("\\ [^\\ ]*$",lyric_array$lyric)
+
+lyric_array$last_word <- substr(lyric_array$lyric, loc+1, 200)
+
+# substr(player_stats_table$Round,1,regexpr(" -",player_stats_table$Round)-1)
+lyric_array
+
+```
+
+
+```{r}
+# Create vector of unique words at the end of each line (this will reduce amount of API requests required)
+unique_end_words <- unique(lyric_array$last_word)
+
+# Call API for unique words
+
+for (i in 1:length(unique_end_words)) {
+  word <- unique_end_words[i]
+  rhymes <- rhyme_brain_get(word = word, lang = 'en')
+  rhymes$search <- word
+  
+  #lyric_array$rhymes <- rhymes
+  
+  if (i > 1) {
+    rhymes_df <- rbind(rhymes_df, rhymes)
+  } else {
+    rhymes_df <- rhymes
+  }
+}
+
+fwrite(rhymes_df, file = "rhyming_words.csv", append = TRUE, col.names = TRUE)
+
+# Filter for words which would be in a dictionary (flags contains 'b')
+rhymes_df_filtered <- filter(rhymes_df, flags == "bc" | flags == "b")
+rhymes_df_filtered
+
+```
+
+```{r}
+matching_array <- rhymes_df
+
+# Save song name
+
+song_name <- lyric_array$track_title[1]
+artist_name <- lyric_array$artist[1]
+
+# Get unique list of lyric elements in song (i.e. verse 1, 2, 3, chorus 1, 2, etc etc)
+
+element_list <- unique(lyric_array$element)
+rhyme_letters <- c("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
+
+# Compare rhyming lyrics by song section (element)
+
+lyric_lines = nrow(lyric_array)
+rhymes = 0
+possible_rhymes = 0
+
+for (e in 1:length(element_list)) {
+  element_lyrics <- filter(lyric_array, element == element_list[e])
+  
+  # Construct match-matrix for element
+  match_matrix <- matrix((0),nrow=nrow(element_lyrics),ncol=nrow(element_lyrics))
+  
+  rhyme_sequence = "A"
+  
+  #print(element_list[e])
+  
+  for (l in 2:nrow(element_lyrics)) {
+    rhyme_sequence <- paste(rhyme_sequence,"_",sep='')
+  }
+  
+  ## Compare each line within the song element to one another, to identify rhyming scheme
+  
+  for (i in 1:nrow(element_lyrics)) {
+    # Rhyme match letter (previously assigned in position to rhyme sequence string)
+    
+    match_letter <- substr(rhyme_sequence,i,i)
+    if (match_letter == "_") {match_letter <- rhyme_letters[i]}
+    
+    for (j in 1:nrow(element_lyrics)) {
+      if (i >= j) {
+        # Do nothing
+      } else {
+      
+        # Compare
+        
+        match_array <- filter(matching_array, search == element_lyrics$last_word[i])
+        match_array_nextline <- filter(match_array, word == element_lyrics$last_word[j])
+        match_array_nextline
+        
+        if (nrow(match_array_nextline) > 0 ) {
+          print(paste("Match: ",i,". ",element_lyrics$last_word[i]," - ",j,". ",element_lyrics$last_word[j],sep=""))
+          substr(rhyme_sequence, j, j) <- match_letter
+          
+          # Add score of match to matrix
+          match_matrix[i,j] <- match_array_nextline$score[1]
+          
+          # Keep track of amount of rhymes in song
+          rhymes = rhymes + 1
+          
+          } else {
+          print(paste("No Match: ",i,". ",element_lyrics$last_word[i]," - ",j,". ",element_lyrics$last_word[j],sep=""))
+          
+          if (substr(rhyme_sequence,j,j) == "_") {
+            # If current values are underscores, change these to letters
+            substr(rhyme_sequence, j, j) <- rhyme_letters[j]
+            }
+        }      
+      }
+    }
+    #print(rhyme_sequence)
+  }
+  # Display resulting match_matrix for element
+  print(match_matrix)
+  print(paste(element_list[e],": ",rhyme_sequence,sep=''))
+  print("")
+  
+  possible_rhymes = (nrow(element_lyrics)*(nrow(element_lyrics)-1)/2) + possible_rhymes
+
+}
+
+  print(paste("Total lines: ",lyric_lines,sep=''))
+  print(paste("Total rhymes: ",rhymes,"/",possible_rhymes,sep=''))
+  
+```
+

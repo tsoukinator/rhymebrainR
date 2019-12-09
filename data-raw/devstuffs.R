@@ -4,7 +4,7 @@ library(desc)
 ## https://stackoverflow.com/questions/39435240/rstudio-changing-origin-for-git-version-control-of-project
 
 # Remove default DESC
-unlink("DESCRIPTION")
+#unlink("DESCRIPTION")
 # Create and clean desc
 my_desc <- description$new("API Wrapper for Rhymebrain getRhymes, getWordInfo and getPortmanteaus API Commands.")
 # https://rhymebrain.com/api.html

@@ -20,7 +20,7 @@ get_datamuse_rhyme <- function(rel_rhy = NULL) {
 }
 
 getRhymes <- function(word = NULL, lang = NULL, maxResults = NULL){
-  args <- list(`function` = "getWordInfo", word = word, lang = lang, maxResults = maxResults)
+  args <- list(`function` = "getRhymes", word = word, lang = lang, maxResults = maxResults)
   # Check that at least one argument is not null
   stop_if_all(args, is.null, "You need to specify at least one argument")
   # Chek for internet
@@ -37,7 +37,7 @@ getRhymes <- function(word = NULL, lang = NULL, maxResults = NULL){
 }
 
 getWordInfo <- function(word = NULL, lang = NULL){
-  args <- list(`function` = "getPortmanteaus", word = word, lang = lang)
+  args <- list(`function` = "getWordInfo", word = word, lang = lang)
   # Check that at least one argument is not null
   stop_if_all(args, is.null, "You need to specify at least one argument")
   # Chek for internet
@@ -53,7 +53,7 @@ getWordInfo <- function(word = NULL, lang = NULL){
 }
 
 getPortmanteaus <- function(word = NULL, lang = NULL, maxResults = NULL){
-  args <- list(`function` = "getRhymes", word = word, lang = lang, maxResults = maxResults)
+  args <- list(`function` = "getPortmanteaus", word = word, lang = lang, maxResults = maxResults)
   # Check that at least one argument is not null
   stop_if_all(args, is.null, "You need to specify at least one argument")
   # Chek for internet

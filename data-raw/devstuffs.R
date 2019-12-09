@@ -46,3 +46,8 @@ use_package("purrr")
 
 # Clean your description
 use_tidy_description()
+
+# Final Tests
+use_testthat()
+use_vignette("{rhymebrainR}")
+use_readme_rmd()

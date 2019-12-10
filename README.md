@@ -1,9 +1,17 @@
 # Welcome to the rhymebrainR package for R.
 
+The purpose of this package is to retrieve rhyming words for a given word in R.
 This package utilises the API on the RhymeBrain.com site, built by Steve Hanov, and allows data to be called directly into R.
 
 For more information on the API itself, please navigate to the following page:
 https://rhymebrain.com/api.html
+
+# Installling this package
+Currently, this package is being awaited approval through CRAN, in the meantime, you can use the following command to install this package:
+```
+library(devtools)
+install_github("tsoukinator/rhymebrainR")
+```
 
 # Functions within package
 
@@ -53,3 +61,7 @@ maxResults	Integer (optional). The maximum amount of results to retrieve (if lef
 
 ### Value
 Dataframe of word information, source word, alternative spelling. More information can be found here: <https://rhymebrain.com/api.html#portmanteau>
+
+
+# Questions
+Any queries you need to raise, log a new issue in GitHub, or send an email to: anthony.tsoukas@gmail.com

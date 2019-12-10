@@ -28,7 +28,7 @@ lang	String (optional). The language the word is written in ('en', 'de', 'es', '
 maxResults	Integer (optional). The maximum amount of results to retrieve (if left null, Rhymebrain will impose it's own limit depending on how many "good sounding rhymes" exist for the word)
 ```
 
-### Value
+### Returns
 Dataframe of rhyming words, their RhymeRank score (300 = perfect), flags, syllables and word commonality frequency. More information can be found at the API site: <https://rhymebrain.com/api.html#rhyme>
 
 ## getWordInfo()
@@ -43,7 +43,7 @@ word	String. A word to retrieve rhymes for - e.g. 'mellow'
 lang	String (optional). The language the word is written in ('en', 'de', 'es', 'fr', 'ru')
 ```
 
-### Value
+### Returns
 List of Information for the given word, given an optional language parameter. More information found here: <https://rhymebrain.com/api.html#pron>
 
 ## getPortmanteaus()
@@ -59,7 +59,7 @@ lang	String (optional). The language the word is written in ('en, 'de', 'es', 'f
 maxResults	Integer (optional). The maximum amount of results to retrieve (if left null, Rhymebrain will impose it's own limit depending on how many "good sounding rhymes" exist for the word)
 ```
 
-### Value
+### Returns
 Dataframe of word information, source word, alternative spelling. More information can be found here: <https://rhymebrain.com/api.html#portmanteau>
 
 

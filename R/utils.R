@@ -1,5 +1,8 @@
-#' @importFrom attempt stop_if_not
-#' @importFrom curl has_internet
+#' @import attempt
+#' @import curl
+#' @import httr
+#' @import jsonlite
+#' @import purrr
 check_internet <- function(){
   stop_if_not(.x = has_internet(), msg = "Please check your internet connexion")
 }
@@ -11,6 +14,5 @@ check_status <- function(res){
               msg = "The API returned an error")
 }
 
-rhyme_url <- "https://api.datamuse.com/words"
 rhyme_brain <- "https://rhymebrain.com/talk"
 ####

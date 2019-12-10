@@ -1,16 +1,17 @@
 Package: rhymebrainR
 Title: R API Wrapper for RhymeBrain.com
-Version: 0.0.0.1000
+Version: 0.0.0.1100
 Authors@R: 
     person(given = "Anthony",
            family = "Tsoukas",
            role = c("aut", "cre"),
            email = "anthony.tsoukas@gmail.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           comment = c(ORCID = "0000-0002-0742-0513"))
 Description: Contains all API commands used with the
     RhymeBrain.com website.
 License: MIT + file LICENSE
-Depends: 
+Depends: R (>= 3.5.1)
+Imports:
     attempt,
     curl,
     httr,

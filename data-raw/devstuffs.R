@@ -19,7 +19,7 @@ my_desc$set("Authors@R", "person('Anthony', 'Tsoukas', email = 'anthony.tsoukas@
 my_desc$del("Maintainer")
 
 # Set the version
-my_desc$set_version("0.0.0.1000")
+my_desc$set_version("0.0.0.1100")
 
 # The title of your package
 my_desc$set(Title = "API Wrapper for Rhymebrain.com.")

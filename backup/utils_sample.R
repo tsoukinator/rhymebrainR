@@ -15,10 +15,3 @@ base_url <- "https://api-adresse.data.gouv.fr/search/"
 reverse_url <- "https://api-adresse.data.gouv.fr/reverse/"
 
 httr::GET(url = base_url, query = list(q = "Yeaye"))
-
-
-## https://rhymebrain.com/api.html
-
-# https://rhymebrain.com/talk?function=getWordInfo&word=hello
-# https://rhymebrain.com/talk?function=getPortmanteaus&word=blog
-

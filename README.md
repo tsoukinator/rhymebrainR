@@ -21,7 +21,11 @@ Gets rhyming words for a given word.
 ### Usage
 getRhymes(word = NULL, lang = NULL, maxResults = NULL)
 
-Arguments:
+### Examples
+getRhymes(word = "test", lang = 'en', maxResults = 10)
+getRhymes("excellent")
+
+### Arguments:
 ```
 word	String. A word to retrieve rhymes for - e.g. 'mellow'
 lang	String (optional). The language the word is written in ('en', 'de', 'es', 'fr', 'ru')
@@ -37,7 +41,11 @@ Gets word info for a given word.
 ## Usage
 getWordInfo(word = NULL, lang = NULL)
 
-Arguments:
+## Examples
+getWordInfo(word = "test, lang = "en")
+getWordInfo("excellent")
+
+### Arguments:
 ```
 word	String. A word to retrieve rhymes for - e.g. 'mellow'
 lang	String (optional). The language the word is written in ('en', 'de', 'es', 'fr', 'ru')
@@ -52,7 +60,11 @@ Gets portmanteaus for a given word (all known information).
 ## Usage
 getPortmanteaus(word = NULL, lang = NULL, maxResults = NULL)
 
-Arguments:
+## Examples
+getPortmanteaus("test", lang = "en", maxResults = 10)
+getPortmanteaus("excellent")
+
+### Arguments:
 ```
 word	String. A word to retrieve rhymes for - e.g. 'mellow'
 lang	String (optional). The language the word is written in ('en, 'de', 'es', 'fr', 'ru')

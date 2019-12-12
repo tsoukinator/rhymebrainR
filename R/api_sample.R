@@ -8,6 +8,7 @@
 #' getRhymes('mellow','en',10)
 #' }
 
+#' @export
 getRhymes <- function(word = NULL, lang = NULL, maxResults = NULL){
   args <- list(`function` = "getRhymes", word = word, lang = lang, maxResults = maxResults)
   # Check that at least one argument is not null
@@ -33,6 +34,7 @@ getRhymes <- function(word = NULL, lang = NULL, maxResults = NULL){
 #' getWordInfo('mellow','en')
 #' }
 
+#' @export
 getWordInfo <- function(word = NULL, lang = NULL){
   args <- list(`function` = "getWordInfo", word = word, lang = lang)
   # Check that at least one argument is not null
@@ -59,6 +61,7 @@ getWordInfo <- function(word = NULL, lang = NULL){
 #' getPortmanteaus('mellow','en',10)
 #' }
 
+#' @export
 getPortmanteaus <- function(word = NULL, lang = NULL, maxResults = NULL){
   args <- list(`function` = "getPortmanteaus", word = word, lang = lang, maxResults = maxResults)
   # Check that at least one argument is not null

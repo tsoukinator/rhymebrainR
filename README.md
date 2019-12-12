@@ -22,9 +22,10 @@ Gets rhyming words for a given word.
 getRhymes(word = NULL, lang = NULL, maxResults = NULL)
 
 ### Examples
+```
 getRhymes(word = "test", lang = 'en', maxResults = 10)
-
 getRhymes("excellent")
+```
 
 ### Arguments:
 ```
@@ -43,8 +44,10 @@ Gets word info for a given word.
 getWordInfo(word = NULL, lang = NULL)
 
 ## Examples
+```
 getWordInfo(word = "test, lang = "en")
 getWordInfo("excellent")
+```
 
 ### Arguments:
 ```
@@ -62,8 +65,10 @@ Gets portmanteaus for a given word (all known information).
 getPortmanteaus(word = NULL, lang = NULL, maxResults = NULL)
 
 ## Examples
+```
 getPortmanteaus("test", lang = "en", maxResults = 10)
 getPortmanteaus("excellent")
+```
 
 ### Arguments:
 ```

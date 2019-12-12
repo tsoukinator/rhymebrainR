@@ -1,8 +1,10 @@
-#' @import attempt
-#' @import curl
-#' @import httr
-#' @import jsonlite
-#' @import purrr
+#' @importFrom attempt stop_if_not
+#' @importFrom curl has_internet
+#' 
+#' @importFrom attempt stop_if_all
+#' @importFrom purrr compact
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
 check_internet <- function(){
   stop_if_not(.x = has_internet(), msg = "Please check your internet connexion")
 }

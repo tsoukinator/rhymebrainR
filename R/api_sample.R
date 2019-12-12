@@ -72,6 +72,3 @@ getPortmanteaus <- function(word = NULL, lang = NULL, maxResults = NULL){
   return(Portmanteaus)
   
 }
-
-#' @export
-#' @rdname rhyme_api

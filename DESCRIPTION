@@ -1,6 +1,6 @@
 Package: rhymebrainR
 Title: R API Wrapper for RhymeBrain.com
-Version: 0.0.0.1100
+Version: 0.0.0.1200
 Authors@R: 
     person(given = "Anthony",
            family = "Tsoukas",
@@ -10,13 +10,19 @@ Authors@R:
 Description: Contains all API commands used with the
     RhymeBrain.com website.
 License: MIT + file LICENSE
-Depends: R (>= 3.5.1)
+Depends: 
+    R (>= 3.5.0)
 Imports:
     attempt,
     curl,
     httr,
     jsonlite,
     purrr
+Suggests: 
+    rmarkdown,
+    knitr,
+    testthat (>= 2.1.0)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.1
+RoxygenNote: 7.0.2
+VignetteBuilder: knitr

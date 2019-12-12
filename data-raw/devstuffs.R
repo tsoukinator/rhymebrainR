@@ -1,6 +1,3 @@
-library(devtools)
-library(usethis)
-library(desc)
 ## https://stackoverflow.com/questions/39435240/rstudio-changing-origin-for-git-version-control-of-project
 
 # Remove default DESC

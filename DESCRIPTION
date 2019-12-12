@@ -1,6 +1,6 @@
 Package: rhymebrainR
 Title: R API Wrapper for RhymeBrain.com
-Version: 0.0.0.1200
+Version: 0.0.0.1300
 Authors@R: 
     person(given = "Anthony",
            family = "Tsoukas",

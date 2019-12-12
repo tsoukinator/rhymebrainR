@@ -40,10 +40,10 @@ Dataframe of rhyming words, their RhymeRank score (300 = perfect), flags, syllab
 ## getWordInfo()
 Gets word info for a given word.
 
-## Usage
+### Usage
 getWordInfo(word = NULL, lang = NULL)
 
-## Examples
+### Examples
 ```
 getWordInfo(word = "test, lang = "en")
 getWordInfo("excellent")
@@ -61,10 +61,10 @@ List of Information for the given word, given an optional language parameter. Mo
 ## getPortmanteaus()
 Gets portmanteaus for a given word (all known information).
 
-## Usage
+### Usage
 getPortmanteaus(word = NULL, lang = NULL, maxResults = NULL)
 
-## Examples
+### Examples
 ```
 getPortmanteaus("test", lang = "en", maxResults = 10)
 getPortmanteaus("excellent")

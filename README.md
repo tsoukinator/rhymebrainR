@@ -23,6 +23,7 @@ getRhymes(word = NULL, lang = NULL, maxResults = NULL)
 
 ### Examples
 getRhymes(word = "test", lang = 'en', maxResults = 10)
+
 getRhymes("excellent")
 
 ### Arguments:
